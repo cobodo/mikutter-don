@@ -89,7 +89,7 @@ Plugin.create(:"mikutter丼") {
       uri: target["url"],
       created: Time.parse(target["created_at"]).localtime,
       modified: Time.parse(modified_time).localtime,
-      description: Sanitize.clean(target["content"]),
+      description: Sanitize.clean(target["content"].gsub(/<br( \/)?>/, "\n")),
       favorite_count: target["favourites_count"],
       retweet_count: target["reblogs_count"],
       user: user
