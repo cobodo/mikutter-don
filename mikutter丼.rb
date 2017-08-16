@@ -44,10 +44,14 @@ Plugin.create(:"mikutter丼") {
   end
 
   def get_client(instance, user, password)
-    tmp_client = Mastodon::REST::Client.new(base_url: instance)
-    app = tmp_client.create_app("mikutter丼", "urn:ietf:wg:oauth:2.0:oob", "read write follow")
+    if UserConfig[:don_client_id] === "".freeze || UserConfig[:don_client_secret] === "".freeze then
+      tmp_client = Mastodon::REST::Client.new(base_url: instance)
+      app = tmp_client.create_app("mikutter丼", "urn:ietf:wg:oauth:2.0:oob", "read write follow")
+      UserConfig[:don_client_id] = app.client_id
+      UserConfig[:don_client_secret] = app.client_secret
+    end
 
-    oauth = OAuth2::Client.new(app.client_id, app.client_secret, site: instance)
+    oauth = OAuth2::Client.new(UserConfig[:don_client_id], UserConfig[:don_client_secret], site: instance)
     token = oauth.password.get_token(user, password, scope: "read write follow")
 
     client = Mastodon::REST::Client.new(base_url: instance, bearer_token: token.token)
