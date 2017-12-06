@@ -96,7 +96,7 @@ Plugin.create(:"mikutter丼") {
       description: Sanitize.clean(target["content"].gsub(/<br( \/)?>/, "\n")),
       favorite_count: target["favourites_count"],
       retweet_count: target["reblogs_count"],
-      possibly_sensitive?: target["sensitive"],
+      sensitive?: target["sensitive"],
       user: user
     )
 

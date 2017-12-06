@@ -27,7 +27,7 @@ class DonMessage < Retriever::Model
   field.int(:id, required: true)
   field.int(:favorite_count, required: true)
   field.int(:retweet_count, required: true)
-  field.bool(:possibly_sensitive?, required: true)
+  field.bool(:sensitive?, required: true)
 
   entity_class(Retriever::Entity::URLEntity)
 end
