@@ -8,7 +8,7 @@ Plugin.create(:"mikutter丼") {
   # 設定画面
   settings(_("丼")) {
     input(_("インスタンスのURL"), :don_instance)
-    input(_("ユーザ名"), :don_user)
+    input(_("メールアドレス"), :don_user)
     inputpass(_("パスワード"), :don_password)
     input(_("client id"), :don_client_id)
     input(_("client secret"), :don_client_secret)
