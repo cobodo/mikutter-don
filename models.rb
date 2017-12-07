@@ -30,4 +30,8 @@ class DonMessage < Retriever::Model
   field.bool(:sensitive?, required: true)
 
   entity_class(Retriever::Entity::URLEntity)
+
+  def perma_link
+    uri
+  end
 end
