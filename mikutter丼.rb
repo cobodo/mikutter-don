@@ -88,12 +88,17 @@ Plugin.create(:"mikutter丼") {
       profile_image_url: avatar_url
     )
 
+    content = Sanitize.clean(target["content"].gsub(/<br( \/)?>/, "\n")).strip
+    if target["spoiler_text"].length > 0
+      content = "CW: " + target["spoiler_text"] + "\n" + content
+    end
+
     message = DonMessage.new_ifnecessary(
       id:  target["id"],
       uri: target["url"],
       created: Time.parse(target["created_at"]).localtime,
       modified: Time.parse(modified_time).localtime,
-      description: Sanitize.clean(target["content"].gsub(/<br( \/)?>/, "\n")),
+      description: content,
       favorite_count: target["favourites_count"],
       retweet_count: target["reblogs_count"],
       sensitive?: target["sensitive"],
