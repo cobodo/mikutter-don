@@ -90,7 +90,7 @@ Plugin.create(:"mikutter丼") {
 
     content = Sanitize.clean(target["content"].gsub(/<br( \/)?>/, "\n")).strip
     if target["spoiler_text"].length > 0
-      content = "CW: " + target["spoiler_text"] + "\n" + content
+      content = "CW: " + target["spoiler_text"] + "\n----------------\n" + content
     end
 
     message = DonMessage.new_ifnecessary(
